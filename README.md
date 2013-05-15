@@ -17,4 +17,5 @@
 + **博弈标准式**
   1. 博弈参与者
   2. 每一参与者可供选择的战略集
-  3. 对每一个  所有参与者选择的组合，每一个参与者从中的获益情况
+  3. 对每一个  所有参与者选择的组合，每一个参与者从中的获益情况  
+  ![博弈标准式](http://www.sciweavers.org/tex2img.php?eq=G%3D%5Cbig%5C%7BS_%7B1%7D%20%2C...%2CS_%7Bn%7D%3Bu_%7B1%7D%2C...%2Cu_%7Bn%7D%5Cbig%5C%7D%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
