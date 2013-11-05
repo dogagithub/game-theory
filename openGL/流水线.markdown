@@ -1,0 +1,34 @@
+##硬件流水线
+>顶点数据生成 vertex puller → 顶点数据处理 vertex shader → 图元生成 tesselletion control shader + 
+tesselletion primitive gen\. + tessellation Eval\. shader → 图元处理 geometry shader → 
+片元生成（光栅化） rasterization → 片元处理 fragment shader → 像素更新 per-fragment operations
+
+###顶点数据生成 vertex puller
+>将顶点数据拉进显卡
+
+###顶点数据处理 vertex shader
+>本阶段主要是通过计算把三维顶点坐标映射到二维屏幕，计算各顶点的亮度值等。
+这个阶段是可编程的，由vertex shader完成。
+输入与输出一一对应，即一个顶点被处理后仍然是一个顶点，各顶点间的处理相互独立，可以并行完成。
+
+###图元生成 tesselletion control shader + tesselletion primitive gen\. + tessellation Eval\. shader
+>根据应用程序定义的顶点拓扑逻辑，把上阶段输出的顶点组织起来形成有序的图元流（曲面细分）。
+顶点拓扑逻辑定义了图元在输出流中的顺序，一个图元记录由若干顶点记录组成。
+
+###图元处理 geometry shader
+>这一阶段也是可编程的，由geometry shader完成。
+输入和输出不是一一对应，一个图元被处理后可以生成0个或者多个图元，各图元处理也是相互独立的。
+本阶段输出一个新的图元流。
+
+###片元生成（光栅化） rasterization
+这一阶段将对每一个图元在屏幕空间进行采样，即光栅化。
+每一个采样点对应一个片元记录，记录该采样点在屏幕空间中的位置、与视点之间的距离以及通过插值获得的顶点属性等。
+
+###片元处理 fragment shader
+片元处理阶段是可编程的，由pixel shader完成，主要完成图形的填色功能。
+模拟光线和物体表面的交互作用，决定每个片元的颜色及透明程度等属性。
+
+###像素更新(最终合成) per-fragment operations
+用每个片元的屏幕坐标来计算该片元对最终生成图像上的像素的影响程度。
+本阶段计算每个采样点离视点的距离，丢弃被遮挡住的片元。
+当来自多个图元的片元影响同一个像素时，往往都根据图元处理输出流中定义的图元位置进行像素更新。
